@@ -1,5 +1,5 @@
 import "../../../index.css"
-import { Form, Input, Button, Checkbox } from "antd"
+import { Form, Input, Button, Checkbox, Typography } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 import { useState } from "react"
 import api from "../../../common/api"
@@ -16,6 +16,7 @@ const SignIn = ({ toggleAuth }: Props): JSX.Element => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const { Title }  =Typography
     const navigate = useNavigate()
 
     const handleSignIn = async () => {
@@ -24,13 +25,13 @@ const SignIn = ({ toggleAuth }: Props): JSX.Element => {
         if (isSuccessful(response.status)) {
             toatUtil.success('Аутенцификация успешна!')
             localStorageUtils.authToken.set(response.data.accessToken)
-            navigate('/dashboard/')
+            navigate('/main/category')
         }
     }
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h1>Sign in</h1>
+        <Title>Sign in</Title>
         <Form
             name="normal_login"
             className="login-form"

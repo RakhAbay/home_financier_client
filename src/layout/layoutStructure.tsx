@@ -2,8 +2,30 @@ import React from 'react'
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import { Outlet, useNavigate } from 'react-router-dom'
+
+type MenuItem = Required<MenuProps>['items'][number];
 
 const { Header, Content, Sider } = Layout
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
+}
+
+const items: MenuProps['items'] = [
+  getItem('Навигация', 'grp', null, [getItem('Категорий', 'category'), getItem('Доходы/Расходы', 'inOutCome')], 'group'),
+];
 
 const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
   key,
@@ -35,8 +57,25 @@ const LayoutStructure: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
+  const navigate = useNavigate()
+
+  const handleNavigation: MenuProps['onClick'] = (e) => {
+    console.log('click ', e);
+    switch (e.key) {
+      case 'category':
+        navigate('/main/category')
+        break;
+      case 'inOutCome':
+        navigate('/main/in-out-come')
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Layout>
+      {/* TODO: remove 
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className="demo-logo" />
         <Menu
@@ -46,22 +85,21 @@ const LayoutStructure: React.FC = () => {
           items={items1}
           style={{ flex: 1, minWidth: 0 }}
         />
-      </Header>
+      </Header> */}
       <Layout>
         <Sider width={200} style={{ background: colorBgContainer }}>
           <Menu
+            onClick={handleNavigation}
             mode="inline"
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
-            items={items2}
+            items={items}
           />
         </Sider>
         <Layout style={{ padding: '0 24px 24px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
+            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           </Breadcrumb>
           <Content
             style={{
@@ -72,7 +110,7 @@ const LayoutStructure: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            Content
+            <Outlet />
           </Content>
         </Layout>
       </Layout>

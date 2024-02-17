@@ -1,5 +1,5 @@
 import "../../../index.css"
-import { Form, Input, Button, Checkbox } from "antd"
+import { Form, Input, Button, Checkbox, Typography } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 import { useState } from "react"
 import api from "../../../common/api"
@@ -17,6 +17,8 @@ const SignUp = ({ toggleAuth }: Props): JSX.Element => {
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
+    const { Title } = Typography
+
     const handleSignUp = async () => {
         const response = await api.auth.signUp({
             email,
@@ -33,7 +35,7 @@ const SignUp = ({ toggleAuth }: Props): JSX.Element => {
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <h1>Sign up</h1>
+        <Title>Sign up</Title>
         <Form
             name="normal_login"
             className="login-form"
