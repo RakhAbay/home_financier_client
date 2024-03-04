@@ -55,6 +55,12 @@ const InOutComePage = (): JSX.Element => {
             toatUtil.success('Удалено')
         },
     });
+    const outcomeDeleteMutation = useMutation(api.outcome.deleteOutcome, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("outcome");
+            toatUtil.success('Удалено')
+        },
+    });
     // const outcomeCategoryMutation = useMutation(api.categories.addOutcome, {
     //     onSuccess: () => {
     //         // Invalidate and refetch
@@ -77,6 +83,7 @@ const InOutComePage = (): JSX.Element => {
         if (isIncome) {
             incomeDeleteMutation.mutate(id)
         } else {
+            outcomeDeleteMutation.mutate(id)
         }
     }
 

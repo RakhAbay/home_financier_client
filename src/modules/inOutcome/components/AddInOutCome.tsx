@@ -61,6 +61,13 @@ const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
             resetForm()
         },
     });
+    const outcomeEditMutation = useMutation(api.outcome.editOutcome, {
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries("outcome");
+            toatUtil.success('Изменено')
+        },
+    });
 
     const handleInOutComeAddition = () => {
         // if (categoryId) {
@@ -75,7 +82,11 @@ const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
                 incomeMutation.mutate({ categoryId: catId, comment: note, sum: amount });
             }
         } else {
-            outcomeMutation.mutate({ categoryId: catId, comment: note, sum: amount });
+            if (editPayload) {
+                outcomeEditMutation.mutate({ id: editPayload.id, categoryId: catId, comment: note, sum: amount });
+            } else {
+                outcomeMutation.mutate({ categoryId: catId, comment: note, sum: amount });
+            }
         }
     };
 
@@ -85,21 +96,6 @@ const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
 
     return (
         <div>
-            {/* <Title level={3}>Добавление категорий</Title> */}
-            {/* <InputNumber
-                placeholder="Сумма"
-                value={amount}
-                onChange={(number) => setAmount(number??0)}
-            />
-            <Input
-                placeholder="Заметка"
-                value={note}
-                onChange={(event) => setNote(event.target.value)}
-            />
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                <Button type="primary" onClick={handleInOutComeAddition}>Добавить</Button>
-            </div> */}
-
             <Form
             name="normal_login"
             className="login-form"
