@@ -7,3 +7,14 @@
 .login-form-button {
   width: 100%;
 }
+
+.pinned {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px; /* Optional: Add some margin for better appearance */
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

@@ -4,6 +4,7 @@ import CategoryPage from "./modules/dashboard/CategoryPage";
 import localStorageUtils from "./common/utils/localStorageUtil";
 import LayoutStructure from "./layout/layoutStructure";
 import InOutComePage from "./modules/inOutcome/InOutCome";
+import { ChatBotContainer } from "./common/components/ChatbotContainer";
 
 const Protected = ({ children }: any) => {
     const token = localStorageUtils.authToken.get();
@@ -30,12 +31,22 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/main/category",
-                element: <CategoryPage />,
+                element: (
+                    <>
+                        <CategoryPage />
+                        <ChatBotContainer />
+                    </>
+                ),
             },
             {
-              path: "/main/in-out-come",
-              element: <InOutComePage />,
-          },
+                path: "/main/in-out-come",
+                element: (
+                    <>
+                        <InOutComePage />
+                        <ChatBotContainer />
+                    </>
+                ),
+            },
         ],
     },
 ]);
