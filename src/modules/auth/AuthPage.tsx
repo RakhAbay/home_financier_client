@@ -6,7 +6,6 @@ const AuthPage = (): JSX.Element => {
     const [isLogin, setIsLogin] = useState(true)
 
     const toggleAuth = () => {
-        console.log(isLogin)
         setIsLogin(!isLogin)
     }
 

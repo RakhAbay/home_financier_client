@@ -2,7 +2,6 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import api from "../../../common/api";
 import { Button, Form, Input, InputNumber, Select } from "antd";
 import { useState } from "react";
-import { Typography } from 'antd';
 import toatUtil from "../../../common/utils/toastUtil";
 import InOutComeNumCategory from "../../../common/types/InOutComeNumCategory";
 
@@ -12,7 +11,6 @@ interface Props {
 }
 
 const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
-    console.log(editPayload)
     const [categoryId, setCategoryId] = useState<number | null>(editPayload?.category ?? null);
     const [amount, setAmount] = useState<number>(editPayload?.sum ?? 0);
     const [note, setNote] = useState<string>(editPayload?.comment ?? '')
@@ -37,7 +35,6 @@ const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
     const outcomeCategories = outcomeCategoriesQuery.data?.data;
 
     const categories = isIncome ? incomeCategories : outcomeCategories
-    console.log(categories)
     const categoriesOptions = categories?.map(item => {
         return { value: item.id, label: item.name }
     })
@@ -73,10 +70,8 @@ const AddInOutCome = ({ isIncome, editPayload }: Props): JSX.Element => {
         const catId = (categoryId as unknown as number)
         if (isIncome) {
             if (editPayload) {
-                console.log('UDPATED', { categoryId: catId, comment: note, sum: amount })
                 incomeEditMutation.mutate({ id: editPayload.id, categoryId: catId, comment: note, sum: amount })
             } else {
-                console.log('HERER', { categoryId: catId, comment: note, sum: amount })
                 incomeMutation.mutate({ categoryId: catId, comment: note, sum: amount });
             }
         } else {

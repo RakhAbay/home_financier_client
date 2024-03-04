@@ -20,7 +20,6 @@ const SignIn = ({ toggleAuth }: Props): JSX.Element => {
     const navigate = useNavigate()
 
     const handleSignIn = async () => {
-        console.log(email, password)
         const response = await api.auth.signIn(email, password)
         if (isSuccessful(response.status)) {
             toatUtil.success('Аутенцификация успешна!')
