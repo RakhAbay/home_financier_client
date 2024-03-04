@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const toatUtil = {
+const toastUtil = {
     success: (content: string) => {
         toast.success(content, {
             position: "bottom-right",
@@ -28,4 +28,4 @@ const toatUtil = {
     }
 }
 
-export default toatUtil
+export default toastUtil
