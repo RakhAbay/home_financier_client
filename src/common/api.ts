@@ -4,7 +4,7 @@ import SignUpPayload from "./types/SignUpPayload"
 import SignInResponse from "./types/SignInResponse"
 import SignUpResponse from "./types/SignUpResponse"
 import Category from "./types/Category"
-import InOutCome from "./types/InOutCome"
+import InOutCome, { InOutComeAnalytics } from "./types/InOutCome"
 import InOutComeAddRequest from "./types/InOutComeAddRequest"
 import InOutComeEditRequest from "./types/InOutComeEditRequest"
 import { FinancialGoal, FinancialGoalHistoryRequest, FinancialGoalRequest } from "./types/FinancialGoal"
@@ -98,6 +98,16 @@ const api = {
             return await axiosInstance.post(`${BASE_URL}/financial-goals/add-history`, request)
         }
     },
+
+    analytics: {
+        incomeAnalytics: async (): Promise<AxiosResponse<InOutComeAnalytics>> => {
+            return await axiosInstance.post(`${BASE_URL}/analytics/incomes`)
+        },
+
+        outcomeAnalytics: async (): Promise<AxiosResponse<InOutComeAnalytics>> => {
+            return await axiosInstance.post(`${BASE_URL}/analytics/outcomes`)
+        },
+    }
 }
 
 export default api
