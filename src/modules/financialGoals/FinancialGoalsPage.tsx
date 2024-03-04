@@ -11,7 +11,6 @@ const FinancialGoalsPage = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
     const [financialGoalId, setFinancialGoalId] = useState(-1)
-    const [history, setHistory] = useState<FinancialGoalHistory[]>([])
 
     const queryClient = useQueryClient();
     const financialGoalDeleteMutation = useMutation(api.financialGoal.deleteFinancialGoal, {
@@ -31,7 +30,6 @@ const FinancialGoalsPage = (): JSX.Element => {
 
     const handleOpenHistoryAddition = (id: number, history: FinancialGoalHistory[]) => {
         setFinancialGoalId(id)
-        setHistory(history)
         setIsHistoryModalOpen(true)
     }
 
