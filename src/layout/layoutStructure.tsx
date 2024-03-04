@@ -24,7 +24,12 @@ function getItem(
 }
 
 const items: MenuProps['items'] = [
-  getItem('Навигация', 'grp', null, [getItem('Категорий', 'category'), getItem('Доходы/Расходы', 'inOutCome')], 'group'),
+  getItem('Навигация', 'grp', null,
+  [
+    getItem('Категорий', 'category'),
+    getItem('Доходы/Расходы', 'inOutCome'),
+    getItem('Финасовые цели', 'financialGoals')
+  ], 'group'),
 ];
 
 const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
@@ -67,6 +72,9 @@ const LayoutStructure: React.FC = () => {
         break;
       case 'inOutCome':
         navigate('/main/in-out-come')
+        break;
+      case 'financialGoals':
+        navigate('/main/financial-goals')
         break;
       default:
         break;
