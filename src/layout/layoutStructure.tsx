@@ -29,6 +29,7 @@ const items: MenuProps['items'] = [
     getItem('Категорий', 'category'),
     getItem('Доходы/Расходы', 'inOutCome'),
     getItem('Финасовые цели', 'financialGoals'),
+    getItem('Аналитика', 'analytics'),
     getItem('Выход', 'logout')
   ], 'group'),
 ];
@@ -66,7 +67,6 @@ const LayoutStructure: React.FC = () => {
   const navigate = useNavigate()
 
   const handleNavigation: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
     switch (e.key) {
       case 'category':
         navigate('/main/category')
@@ -76,6 +76,9 @@ const LayoutStructure: React.FC = () => {
         break;
       case 'financialGoals':
         navigate('/main/financial-goals')
+        break;
+      case 'analytics':
+        navigate('/main/analytics')
         break;
       case 'logout':
         navigate('/auth')
