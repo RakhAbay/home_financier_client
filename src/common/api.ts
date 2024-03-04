@@ -7,6 +7,7 @@ import Category from "./types/Category"
 import InOutCome from "./types/InOutCome"
 import InOutComeAddRequest from "./types/InOutComeAddRequest"
 import InOutComeEditRequest from "./types/InOutComeEditRequest"
+import { FinancialGoal, FinancialGoalHistoryRequest, FinancialGoalRequest } from "./types/FinancialGoal"
 
 const BASE_URL = 'http://localhost:8080/api/v1'
 
@@ -74,7 +75,29 @@ const api = {
         list: async (): Promise<AxiosResponse<InOutCome[]>> => {
             return await axiosInstance.post(`${BASE_URL}/outcomes/list`)
         },
-    }
+    },
+
+    financialGoal: {
+        addFinancialGoal: async (request: FinancialGoalRequest): Promise<AxiosResponse<FinancialGoal>> => {
+            return await axiosInstance.post(`${BASE_URL}/financial-goals/add`, request)
+        },
+
+        deleteFinancialGoal: async (id: number): Promise<AxiosResponse<null>> => {
+            return await axiosInstance.delete(`${BASE_URL}/financial-goals/delete/${id}`)
+        },
+
+        getFinancialGoalsByUser: async (): Promise<AxiosResponse<FinancialGoal[]>> => {
+            return await axiosInstance.get(`${BASE_URL}/financial-goals/all`)
+        },
+
+        getFinancialGoalById: async (id: number): Promise<AxiosResponse<FinancialGoal>> => {
+            return await axiosInstance.get(`${BASE_URL}/financial-goals/${id}`)
+        },
+
+        addHistory: async (request: FinancialGoalHistoryRequest): Promise<AxiosResponse<FinancialGoal>> => {
+            return await axiosInstance.post(`${BASE_URL}/financial-goals/add-history`, request)
+        }
+    },
 }
 
 export default api
