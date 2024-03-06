@@ -62,15 +62,15 @@ const api = {
 
     outcome: {
         saveOutcome: async ({ categoryId, sum, comment }: InOutComeAddRequest): Promise<AxiosResponse<InOutCome>> => {
-            return await axiosInstance.post(`${BASE_URL}/incomes/save-outcome`, { categoryId, sum, comment })
+            return await axiosInstance.post(`${BASE_URL}/outcomes/save-outcome`, { categoryId, sum, comment })
         },
 
         editOutcome: async ({ id, categoryId, sum, comment }: InOutComeEditRequest): Promise<AxiosResponse<InOutCome>> => {
-            return await axiosInstance.put(`${BASE_URL}/incomes/edit-outcome`, { id, categoryId, sum, comment })
+            return await axiosInstance.put(`${BASE_URL}/outcomes/edit-outcome`, { id, categoryId, sum, comment })
         },
 
         deleteOutcome: async (id: number): Promise<AxiosResponse<null>> => {
-            return await axiosInstance.delete(`${BASE_URL}/incomes/delete-outcome/${id}`)
+            return await axiosInstance.delete(`${BASE_URL}/outcomes/delete-outcome/${id}`)
         },
 
         list: async (): Promise<AxiosResponse<InOutCome[]>> => {
