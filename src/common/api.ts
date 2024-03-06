@@ -8,6 +8,7 @@ import InOutCome, { InOutComeAnalytics } from "./types/InOutCome"
 import InOutComeAddRequest from "./types/InOutComeAddRequest"
 import InOutComeEditRequest from "./types/InOutComeEditRequest"
 import { FinancialGoal, FinancialGoalHistoryRequest, FinancialGoalRequest } from "./types/FinancialGoal"
+import { User, UserUpdateRequest } from "./types/User"
 
 const BASE_URL = 'http://localhost:8080/api/v1'
 
@@ -107,7 +108,21 @@ const api = {
         outcomeAnalytics: async (): Promise<AxiosResponse<InOutComeAnalytics>> => {
             return await axiosInstance.post(`${BASE_URL}/analytics/outcomes`)
         },
-    }
+    },
+
+    profile: {
+        getProfile: async (): Promise<AxiosResponse<User>> => {
+            return await axiosInstance.get(`${BASE_URL}/users`)
+        },
+
+        updateProfile: async (request: UserUpdateRequest): Promise<AxiosResponse<User>> => {
+            return await axiosInstance.put(`${BASE_URL}/users/update`, request)
+        },
+
+        deleteUser: async (): Promise<AxiosResponse<null>> => {
+            return await axiosInstance.delete(`${BASE_URL}/users/delete`)
+        }
+    },
 }
 
 export default api
