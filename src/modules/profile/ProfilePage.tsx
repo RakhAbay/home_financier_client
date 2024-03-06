@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, List, Modal, Typography } from "antd";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import api from "../../common/api";
@@ -23,13 +23,36 @@ const ProfilePage = (): JSX.Element => {
 
     return (
         <>
-            <h1>Profile Page</h1>
-            {profileData?.id} <br />
-            {profileData?.firstName} <br />
-            {profileData?.lastName} <br />
-            {profileData?.email} <br />
-            {profileData?.roles} <br />
-            <Button onClick={() => setIsModalOpen(true)} type="primary">Редактировать</Button>
+            <List
+                header={
+                    // <Typography.Title level={5}>Профиль</Typography.Title>
+                    <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Typography.Title level={5}>Профиль:</Typography.Title>
+                        <Button onClick={() => setIsModalOpen(true)} type="primary">Редактировать</Button>
+                        <Button onClick={() => {console.log('DELETING...')}} type="primary" danger>Удалить</Button>
+                    </div>
+                }
+                bordered
+                // dataSource={incomeCategories}
+                // renderItem={(item) => (
+                //     <List.Item>
+                //         <Typography.Text>{item.name}</Typography.Text>
+                //     </List.Item>
+                // )}
+            >
+                <List.Item>
+                    <Typography.Text>Email</Typography.Text>
+                    <Typography.Text>{profileData?.email}</Typography.Text>
+                </List.Item>
+                <List.Item>
+                    <Typography.Text>Имя</Typography.Text>
+                    <Typography.Text>{profileData?.firstName}</Typography.Text>
+                </List.Item>
+                <List.Item>
+                    <Typography.Text>Фамилия</Typography.Text>
+                    <Typography.Text>{profileData?.lastName}</Typography.Text>
+                </List.Item>
+            </List>
 
             {/* Модальное окно для редакирования профиля */}
             <Modal

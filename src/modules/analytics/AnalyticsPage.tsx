@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import api from "../../common/api";
 import PieChart from "./components/PieChart";
+import OutPieChart from "./components/OutcomePieChart";
 
 const AnalyticsPage = (): JSX.Element => {
 
@@ -19,6 +20,8 @@ const AnalyticsPage = (): JSX.Element => {
         <div>
             <h1>Analytics Page</h1>
             <PieChart />
+            <br />
+            <OutPieChart />
         </div>
     )
 }
