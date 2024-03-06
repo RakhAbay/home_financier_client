@@ -7,6 +7,7 @@ import InOutComePage from "./modules/inOutcome/InOutCome";
 import { ChatBotContainer } from "./common/components/ChatbotContainer";
 import FinancialGoalsPage from "./modules/financialGoals/FinancialGoalsPage";
 import AnalyticsPage from "./modules/analytics/AnalyticsPage";
+import ProfilePage from "./modules/profile/ProfilePage";
 
 const Protected = ({ children }: any) => {
     const token = localStorageUtils.authToken.get();
@@ -63,6 +64,15 @@ const router = createBrowserRouter([
                 element: (
                     <>
                         <AnalyticsPage />
+                        <ChatBotContainer />
+                    </>
+                ),
+            },
+            {
+                path: "/main/profile",
+                element: (
+                    <>
+                        <ProfilePage />
                         <ChatBotContainer />
                     </>
                 ),

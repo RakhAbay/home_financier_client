@@ -30,6 +30,7 @@ const items: MenuProps['items'] = [
     getItem('Доходы/Расходы', 'inOutCome'),
     getItem('Финасовые цели', 'financialGoals'),
     getItem('Аналитика', 'analytics'),
+    getItem('Профиль', 'profile'),
     getItem('Выход', 'logout')
   ], 'group'),
 ];
@@ -79,6 +80,9 @@ const LayoutStructure: React.FC = () => {
         break;
       case 'analytics':
         navigate('/main/analytics')
+        break;
+      case 'profile':
+        navigate('/main/profile')
         break;
       case 'logout':
         navigate('/auth')
