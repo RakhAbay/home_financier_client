@@ -2,26 +2,26 @@ import { useQuery } from "react-query";
 import api from "../../common/api";
 import PieChart from "./components/PieChart";
 import OutPieChart from "./components/OutcomePieChart";
+import { Typography } from "antd";
 
 const AnalyticsPage = (): JSX.Element => {
-
-    const outcomeAnalyticsQuery = useQuery(
-        "outcome-analytics",
-        api.analytics.outcomeAnalytics
-    );
-
-    
-    const outcomeAnalytics = outcomeAnalyticsQuery.data?.data
-
-    // console.log('incomeAnalytics: ', incomeAnalytics)
-    console.log('outcomeAnalytics: ', outcomeAnalytics)
-
     return (
         <div>
-            <h1>Analytics Page</h1>
-            <PieChart />
-            <br />
-            <OutPieChart />
+            <h1>Аналитка</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                <div style={{ width: '300px' }}>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <Typography.Title level={4}>Доходы</Typography.Title>
+                    </div>
+                    <PieChart />
+                </div>
+                <div style={{ width: '300px' }}>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                        <Typography.Title level={4}>Расходы</Typography.Title>
+                    </div>
+                    <OutPieChart />
+                </div>
+            </div>
         </div>
     )
 }
