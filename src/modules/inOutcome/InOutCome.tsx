@@ -12,8 +12,8 @@ const InOutComePage = (): JSX.Element => {
     const [isIncome, setIsIncome] = useState(false);
     const [editInOutCome, setEditInOutCome] = useState<InOutComeNumCategory | null>(null)
 
-    const showModalEditIncome = () => {
-        setIsIncome(true)
+    const showModalEdit = (isIncome: boolean) => {
+        setIsIncome(isIncome)            
         setIsModalOpen(true);
     }
 
@@ -24,6 +24,7 @@ const InOutComePage = (): JSX.Element => {
     };
 
     const showModalOutcome = () => {
+        setEditInOutCome(null)
         setIsIncome(false)
         setIsModalOpen(true);
     };
@@ -72,11 +73,7 @@ const InOutComePage = (): JSX.Element => {
 
     const handleEdit = (payload: InOutCome, isIncome: boolean) => {
         setEditInOutCome({ id: payload.id, sum: payload.sum, comment: payload.comment, category: payload.category.id })
-        if (isIncome) {
-            showModalEditIncome()
-        } else {
-            showModalOutcome()
-        }
+        showModalEdit(isIncome)
     }
 
     const handleDelete = (id: number, isIncome: boolean) => {
@@ -123,6 +120,8 @@ const InOutComePage = (): JSX.Element => {
                         <Typography.Text>{item.sum}</Typography.Text>
                         <Typography.Text>{item.category?.name}</Typography.Text>
                         <Typography.Text>{item.comment}</Typography.Text>
+                        <Button type="primary" onClick={() => handleEdit(item, false)}>Редактировать</Button>
+                        <Button type="primary" danger onClick={() => handleDelete(item.id, false)}>Удалить</Button>
                     </List.Item>
                 )}
             />
@@ -134,7 +133,7 @@ const InOutComePage = (): JSX.Element => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[]}>
-                <AddInOutCome isIncome={isIncome} editPayload={editInOutCome} />
+                <AddInOutCome isIncome={isIncome} editPayload={editInOutCome} key={editInOutCome?.id} />
             </Modal>
         </>
     );

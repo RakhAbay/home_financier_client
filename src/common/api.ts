@@ -66,7 +66,7 @@ const api = {
         },
 
         editOutcome: async ({ id, categoryId, sum, comment }: InOutComeEditRequest): Promise<AxiosResponse<InOutCome>> => {
-            return await axiosInstance.put(`${BASE_URL}/outcomes/edit-outcome`, { id, categoryId, sum, comment })
+            return await axiosInstance.put(`${BASE_URL}/outcomes/edit-outcome/${id}`, { categoryId, sum, comment })
         },
 
         deleteOutcome: async (id: number): Promise<AxiosResponse<null>> => {
