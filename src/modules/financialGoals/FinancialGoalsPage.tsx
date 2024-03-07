@@ -28,7 +28,7 @@ const FinancialGoalsPage = (): JSX.Element => {
     const { data } = financialGoalsQuery
     const financialGoals = data?.data
 
-    const handleOpenHistoryAddition = (id: number, history: FinancialGoalHistory[]) => {
+    const handleOpenHistoryAddition = (id: number) => {
         setFinancialGoalId(id)
         setIsHistoryModalOpen(true)
     }
@@ -76,7 +76,7 @@ const FinancialGoalsPage = (): JSX.Element => {
                             <Typography.Text>{item.isAchieved ? 'Достигнут' : 'Недостигнут'}</Typography.Text>
                         </span>
                         <span style={{ width: '10em' }}>
-                            <Button type="primary" onClick={() => handleOpenHistoryAddition(item.id, item.financialGoalHistoryDTOList)}>История</Button>
+                            <Button type="primary" onClick={() => handleOpenHistoryAddition(item.id)}>История</Button>
                         </span>
                         <span>
                             <Button type="primary" danger onClick={() => handleDelete(item.id)}>Удалить</Button>
@@ -104,7 +104,7 @@ const FinancialGoalsPage = (): JSX.Element => {
                 onCancel={() => setIsHistoryModalOpen(false)}
                 footer={[]}
             >
-                <AddHistoryToFinancialGoal financialGoalId={financialGoalId} />
+                <AddHistoryToFinancialGoal financialGoalId={financialGoalId} key={financialGoalId} />
             </Modal>
         </div>
     )
