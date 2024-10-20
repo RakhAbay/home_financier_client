@@ -103,11 +103,21 @@ const InOutComePage = (): JSX.Element => {
                 dataSource={incomes}
                 renderItem={(item) => (
                     <List.Item>
-                        <Typography.Text>{item.sum}</Typography.Text>
+                        <div style={{width: '30px'}}>
+                            <Typography.Text>{item.sum}</Typography.Text>
+                        </div>
+                        <div style={{width: '70px'}}>
                         <Typography.Text>{item.category?.name}</Typography.Text>
+                        </div>
+                        <div style={{width: '20px'}}>
                         <Typography.Text>{item.comment}</Typography.Text>
+                        </div>
+                        <div>
                         <Button type="primary" onClick={() => handleEdit(item, true)}>Редактировать</Button>
+                        </div>
+                        <div>
                         <Button type="primary" danger onClick={() => handleDelete(item.id, true)}>Удалить</Button>
+                        </div>
                     </List.Item>
                 )}
             />
@@ -118,8 +128,14 @@ const InOutComePage = (): JSX.Element => {
                 renderItem={(item) => (
                     <List.Item>
                         <Typography.Text>{item.sum}</Typography.Text>
+                        <div style={{width: '60px'}}>
                         <Typography.Text>{item.category?.name}</Typography.Text>
+
+                        </div>
+                        <div style={{width: '60px'}}>
                         <Typography.Text>{item.comment}</Typography.Text>
+
+                        </div>
                         <Button type="primary" onClick={() => handleEdit(item, false)}>Редактировать</Button>
                         <Button type="primary" danger onClick={() => handleDelete(item.id, false)}>Удалить</Button>
                     </List.Item>

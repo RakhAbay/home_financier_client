@@ -1,4 +1,3 @@
-import "../../../index.css"
 import { Form, Input, Button, Checkbox, Typography } from "antd"
 import { UserOutlined, LockOutlined } from "@ant-design/icons"
 import { useState } from "react"
@@ -20,12 +19,18 @@ const SignIn = ({ toggleAuth }: Props): JSX.Element => {
     const navigate = useNavigate()
 
     const handleSignIn = async () => {
-        const response = await api.auth.signIn(email, password)
-        if (isSuccessful(response.status)) {
-            toatUtil.success('Аутенцификация успешна!')
-            localStorageUtils.authToken.set(response.data.accessToken)
-            navigate('/main/category')
+        try {
+            const response = await api.auth.signIn(email, password)
+            if (isSuccessful(response.status)) {
+                toatUtil.success('Аутенцификация успешна!')
+                localStorageUtils.authToken.set(response.data.accessToken)
+                navigate('/main/category')
+            } 
+        } catch (error) {
+            toatUtil.error('Неправильный логин или пароль')
+            
         }
+        
     }
 
     return (
